@@ -1,15 +1,11 @@
 #!/usr/bin/env nextflow
+
 /*
 * This is a rnaseq pipeline
 */
 
 nextflow.enable.dsl=2
 
-params.index = '/fsimb/groups-external/sfbcardosogr/ishita/ensembl/grch38/canonical/index/star/2.7.3a'
-params.reads = '/fsimb/groups-external/sfbcardosogr/ishita/maruthi_data/fastq_files/*.fastq.gz'
-params.gtf_file='/fsimb/groups-external/sfbcardosogr/ishita/ensembl/grch38/canonical/annotation/Homo_sapiens.GRCh38.98.gtf'
-params.samples='/fsimb/groups-external/sfbcardosogr/ishita/maruthi_data/samples.txt'
-params.basedir = '/fsimb/groups-external/sfbcardosogr/ishita/maruthi_data'
 log.info """\
 	RNASEQ-NF-PIPELINE
 	==================
