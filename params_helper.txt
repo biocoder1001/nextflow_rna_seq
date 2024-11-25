@@ -1,0 +1,7 @@
+params-helper
+
+params.index = Compatible index for the STAR, in the current pipeline STAR version 2.7.3 is being used
+params.reads = path to the fasta files, current pipline is for the single ended sequencing but can also be modified for paired end
+params.gtf_file = gtf annotation file for the reference genome being used. The genome used in the pipeline is hg38
+params.basedir = The directory where all the result and input files are loacted
+
