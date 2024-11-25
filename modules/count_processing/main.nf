@@ -1,4 +1,4 @@
-process counts_mat {
+process counts_mat_processing {
         publishDir  "${params.basedir}/coutn_files", mode: 'copy'
         input:
         path counts
