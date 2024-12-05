@@ -22,7 +22,7 @@ process alignment_quant {
          --genomeDir $index \
          --readFilesIn $reads \
          --readFilesCommand zcat \
-         --outFileNamePrefix bam_files/${reads.baseName}. \
+         --outFileNamePrefix bam_files/${reads[0].baseName}. \
          --outSAMtype BAM SortedByCoordinate
          mv bam_files/*.ReadsPerGene.out.tab count_files/
         """
