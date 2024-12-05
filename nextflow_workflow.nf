@@ -33,10 +33,18 @@ if (params.help) {
 }
 
 // Define channels
-reads_ch = Channel.fromPath(params.reads,checkIfExists: true)
+pairedEndRegex = params.inputDir + "/*_{1,2}.fastq"
+SERegex = params.inputDir + "/*[!12].fastq"
+pairFiles = Channel.fromFilePairs(pairedEndRegex)
+singleFiles = Channel.fromFilePairs(SERegex, size: 1){ file -> file.baseName.replaceAll(/.fastq/,"")}
+singleFiles.mix(pairFiles)
+.set { reads_ch }
+//reads_ch = Channel.fromFilePairs(params.reads,checkIfExists: true, size:params.singleEnd ? 1:2)
 index_ch = Channel.value(params.index)
 gtf_ch = Channel.value(params.gtf_file)
 sample_selection = Channel.value(params.samples)
+ref = Channel.value(params.ref)
+
 
 
 // import modules
@@ -55,9 +63,9 @@ workflow {
   cutadapt(reads_ch)
   alignment_quant(cutadapt.out,index_ch,gtf_ch)
   counts_mat_processing(alignment_quant.out.count_matrix)
-  counts=sample_file_extract(counts_mat_processing.out,sample_selection).filter{file ->file.name =~ /D.*\.tsv/}
+  counts=sample_file_extract(counts_mat_processing.out,sample_selection).filter{file ->file.name != empty.tsv}
   counts.view()
-  count_files_list = counts.collect().name
+  count_files_list = counts.collect { file -> file.name }
   metadata_prep(count_files_list,sample_selection)
-  deseq_analysis(metadata_prep.out)
+  deseq_analysis(metadata_prep.out, ref, params.group_1, params.group_2)
 }
