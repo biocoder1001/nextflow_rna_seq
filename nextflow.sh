@@ -41,4 +41,6 @@ module load fastqc/0.11.9
 module load star/2.7.3a 
 module load nextflow/23.10.0
 module load jdk/18.0.2.1 
-nextflow run nextflow_workflow.nf -c nextflow.config --reads "/fsimb/groups-external/sfbcardosogr/ishita/nextflow_pipelines/fastq_files/*.fastq.gz"  --index /fsimb/groups-external/sfbcardosogr/ishita/ensembl/grch38/canonical/index/star/2.7.3a  --gtf_file /fsimb/groups-external/sfbcardosogr/ishita/ensembl/grch38/canonical/annotation/Homo_sapiens.GRCh38.98.gtf  --basedir /fsimb/groups-external/sfbcardosogr/ishita/nextflow-pipelines  -with-trace -with-report -with-timeline
+nextflow run nextflow_workflow.nf -c nextflow.config --inputDir "/fsimb/groups-external/sfbcardosogr/ishita/nextflow_pipelines/atac/"  --index /fsimb/groups-external/sfbcardosogr/ishita/ensembl/grch38/canonical/index/star/2.7.3a  --gtf_file /fsimb/groups-external/sfbcardosogr/ishita/ensembl/grch38/canonical/annotation/Homo_sapiens.GRCh38.98.gtf  --basedir /fsimb/groups-external/sfbcardosogr/ishita/nextflow-pipelines  --samples '/fsimb/groups-external/sfbcardosogr/ishita/nextflow_pipelines/samples.txt' --ref 'Progenitor' --group_1 'group_MN_vs_Progenitor' --group_2 'group_DN_vs_Progenitor'  -with-trace -with-report -with-timeline 
+
+
