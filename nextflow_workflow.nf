@@ -63,7 +63,7 @@ workflow {
   cutadapt(reads_ch)
   alignment_quant(cutadapt.out,index_ch,gtf_ch)
   counts_mat_processing(alignment_quant.out.count_matrix)
-  counts=sample_file_extract(counts_mat_processing.out,sample_selection).filter{file ->file.name != empty.tsv}
+  counts=sample_file_extract(counts_mat_processing.out,sample_selection).filter{file ->file.name != 'empty.tsv'}
   counts.view()
   count_files_list = counts.collect { file -> file.name }
   metadata_prep(count_files_list,sample_selection)
