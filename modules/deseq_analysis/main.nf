@@ -10,10 +10,10 @@ process deseq_analysis {
         path "downregulated_genes.tsv"
 	path "upregulated_genes.tsv"
 	path "DE_DESeq2.pdf"
-
+	
         script:
         """
-	Rscript ${params.basedir}/DeSeq.R ${metadata} ${params.basedir} ${ref}  ${group_1} ${group_2}  downregulated_genes.tsv upregulated_genes.tsv
+	Rscript ${params.basedir}/deseq_edited.R -m ${metadata} -d ${params.basedir} -r ${ref}  -f ${group_1} -s ${group_2}  -l downregulated_genes.tsv -u upregulated_genes.tsv
         """
 }
 
