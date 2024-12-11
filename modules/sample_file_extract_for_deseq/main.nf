@@ -10,7 +10,7 @@ process sample_file_extract {
         script:
         """
         sample_list=\$(cut -f1 ${samples})
-        sample_base=\$(basename ${count_files} | cut -d'.' -f1)
+        sample_base=\$(basename ${count_files} | cut -d'_' -f1)
         found=false
         while IFS= read -r sample|| [[ -n "\$sample" ]]; do
                 sample=\$(echo "\$sample" | tr -d '\r')
